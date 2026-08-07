@@ -15,7 +15,7 @@ class App extends StatelessWidget {
       title: 'Derpy',
       navigatorKey: NavigationService.navigatorKey,
       theme: AppTheme.lightTheme,
-      initialRoute: Routes.splash,
+      initialRoute: Routes.onboarding,
       onGenerateRoute: RouteGenerator.generateRoute,
     );
   }

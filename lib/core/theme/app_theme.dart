@@ -1,5 +1,8 @@
+import 'package:derpy/core/theme/app_radius.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import 'app_colors.dart';
 import 'app_text_styles.dart';
 
 class AppTheme {
@@ -7,6 +10,20 @@ class AppTheme {
 
   static ThemeData lightTheme = ThemeData(
     fontFamily: 'Sora',
+
+    textButtonTheme: TextButtonThemeData(
+      style: TextButton.styleFrom(
+        foregroundColor: AppColors.primaryGreen,
+      ),
+    ),
+    floatingActionButtonTheme: FloatingActionButtonThemeData(
+      backgroundColor: AppColors.greenHover,
+      foregroundColor: AppColors.primary,
+      elevation: 0,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(AppRadius.round),
+      ),
+    ),
     textTheme: TextTheme(
       displayLarge: AppTextStyles.displayLarge,
       displayMedium: AppTextStyles.displayMedium,

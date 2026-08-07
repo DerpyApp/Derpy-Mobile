@@ -5,10 +5,9 @@ import 'app/app.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-
   runApp(
     ScreenUtilInit(
-      designSize: const Size(390, 844),
+      designSize: const Size(402, 874),
       minTextAdapt: true,
       splitScreenMode: true,
       child: const App(),
