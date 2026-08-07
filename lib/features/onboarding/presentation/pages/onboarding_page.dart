@@ -1,7 +1,9 @@
+import 'package:derpy/core/cache/cache_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../../core/cache/cache_keys.dart';
 import '../../../../core/routing/routes.dart';
 import '../../../../core/services/navigation_service.dart';
 import '../../../../core/theme/app_durations.dart';
@@ -55,10 +57,14 @@ class _OnboardingPageState extends State<OnboardingPage> {
                     child: Column(
                       children: [
                         OnboardingTopBar(
-                          onSkip: () {
+                          onSkip: () async {
                             _pageController.previousPage(
                               duration: AppDurations.medium,
                               curve: Curves.easeInOut,
+                            );
+                            await CacheHelper.saveBool(
+                              key: CacheKeys.onboardingSeen,
+                              value: true,
                             );
                             NavigationService.pushNamed(Routes.welcome);
                           },
@@ -72,9 +78,13 @@ class _OnboardingPageState extends State<OnboardingPage> {
                         const Spacer(),
                         OnboardingBottomBar(
                           pageController: _pageController,
-                          onNext: () {
+                          onNext: () async {
                             final cubit = context.read<OnboardingCubit>();
                             if (cubit.isLastPage(OnboardingData.pages.length)) {
+                              await CacheHelper.saveBool(
+                                key: CacheKeys.onboardingSeen,
+                                value: true,
+                              );
                               NavigationService.pushNamed(Routes.welcome);
                             } else {
                               cubit.nextPage(
