@@ -1,0 +1,87 @@
+import 'package:derpy/core/theme/app_colors.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
+
+class DefaultTextFormField extends StatefulWidget {
+  final String? hintText;
+  final String? Function(String?)? validator;
+  final TextEditingController? controller;
+  final void Function(String)? onChange;
+  final String? prefixIconImageName;
+  final String? suffixIconImageName;
+  final bool isPassword;
+  final int maxLine;
+  final bool readOnly;
+  final bool enabled;
+
+
+  const DefaultTextFormField({
+    super.key,
+    required this.hintText,
+    this.validator,
+    this.controller,
+    this.onChange,
+    this.prefixIconImageName,
+    this.suffixIconImageName,
+    this.isPassword = false,
+    this.maxLine = 1,
+    this.readOnly = false,
+    this.enabled = true,
+  });
+
+  @override
+  State<DefaultTextFormField> createState() => _DefaultTextFormFieldState();
+}
+
+class _DefaultTextFormFieldState extends State<DefaultTextFormField> {
+  bool isObscure = true;
+  @override
+  Widget build(BuildContext context) {
+    return TextFormField(
+      style: TextStyle(
+        color: Theme.of(context).primaryColor,
+        fontSize: 16,
+        fontWeight: FontWeight.w500,
+      ),
+      decoration: InputDecoration(
+        hintText: widget.hintText,
+        prefixIcon: widget.prefixIconImageName == null
+            ? null
+            : SvgPicture.asset(
+                'assets/icons/${widget.prefixIconImageName}.svg',
+                width: 24,
+                height: 24,
+                fit: .scaleDown,
+              ),
+        suffixIcon: widget.isPassword
+            ? InkWell(
+                onTap: () {
+                  isObscure = !isObscure;
+                  setState(() {});
+                },
+                child: isObscure
+                    ? Icon(Icons.visibility_outlined, color: AppColors.lightGray)
+                    : Icon(Icons.visibility_off_outlined, color: AppColors.lightGray),
+              )
+            : widget.suffixIconImageName == null
+            ? null
+            : SvgPicture.asset(
+                'assets/icons/${widget.suffixIconImageName}.svg',
+                width: 24,
+                height: 24,
+                fit: .scaleDown,
+              ),
+      ),
+      onChanged: widget.onChange,
+      validator: widget.validator,
+      controller: widget.controller,
+      obscureText: widget.isPassword && isObscure,
+      autovalidateMode: .onUserInteraction,
+      cursorColor: Theme.of(context).primaryColor,
+      onTapOutside: (_) => FocusScope.of(context).unfocus(),
+      maxLines: widget.maxLine,
+      readOnly: widget.readOnly,
+      enabled: widget.enabled,
+    );
+  }
+}
