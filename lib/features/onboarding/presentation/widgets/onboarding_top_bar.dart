@@ -39,7 +39,6 @@ class OnboardingTopBar extends StatelessWidget {
                     ),
                   ),
                 ),
-
               Center(
                 child: Image.asset('assets/images/derpy.png', height: 36.h),
               ),

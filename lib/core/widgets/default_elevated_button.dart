@@ -20,12 +20,11 @@ class DefaultElevatedButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Color primaryColor = Theme.of(context).primaryColor;
     return ElevatedButton(
       onPressed: onPressed,
       style: ElevatedButton.styleFrom(
-        backgroundColor: backgroundColor ?? primaryColor,
-        foregroundColor: foregroundColor ?? AppColors.white,
+        backgroundColor: backgroundColor ?? AppColors.greenHover,
+        foregroundColor: foregroundColor ?? AppColors.primary,
         fixedSize: Size(MediaQuery.sizeOf(context).width, 48),
       ),
       child: Row(
