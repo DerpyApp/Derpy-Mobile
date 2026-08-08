@@ -1,8 +1,9 @@
 import 'package:derpy/core/routing/routes.dart';
+import 'package:derpy/features/auth/presentation/pages/sign_in_page.dart';
 import 'package:flutter/material.dart';
-import '../../features/auth/presentation/pages/login_page.dart';
+import '../../features/auth/presentation/pages/sign_up_page.dart';
 import '../../features/onboarding/presentation/pages/onboarding_page.dart';
-import '../../features/onboarding/presentation/pages/welcomepage.dart';
+import '../../features/onboarding/presentation/pages/welcome_page.dart';
 
 class RouteGenerator {
   RouteGenerator._();
@@ -10,24 +11,17 @@ class RouteGenerator {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
       case Routes.onboarding:
-        return MaterialPageRoute(
-          builder: (_) => const OnboardingPage(),
-        );
-      case Routes.login:
-        return MaterialPageRoute(
-          builder: (_) => const LoginPage(),
-        );
+        return MaterialPageRoute(builder: (_) => const OnboardingPage());
       case Routes.welcome:
-        return MaterialPageRoute(
-          builder: (_) => const WelcomePage(),
-        );
+        return MaterialPageRoute(builder: (_) => const WelcomePage());
+      case Routes.signUp:
+        return MaterialPageRoute(builder: (_) => const SignUpPage());
+      case Routes.signIn:
+        return MaterialPageRoute(builder: (_) => const SignInPage());
       default:
         return MaterialPageRoute(
-          builder: (_) => const Scaffold(
-            body: Center(
-              child: Text('No Route Found'),
-            ),
-          ),
+          builder: (_) =>
+              const Scaffold(body: Center(child: Text('No Route Found'))),
         );
     }
   }

@@ -1,6 +1,5 @@
 import 'package:derpy/core/theme/app_radius.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'app_colors.dart';
 import 'app_text_styles.dart';
@@ -10,6 +9,7 @@ class AppTheme {
 
   static ThemeData lightTheme = ThemeData(
     fontFamily: 'Sora',
+    scaffoldBackgroundColor: AppColors.primary,
 
     textButtonTheme: TextButtonThemeData(
       style: TextButton.styleFrom(
@@ -22,6 +22,13 @@ class AppTheme {
       elevation: 0,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(AppRadius.round),
+      ),
+    ),
+    elevatedButtonTheme: ElevatedButtonThemeData(
+      style: ElevatedButton.styleFrom(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(AppRadius.md),
+        ),
       ),
     ),
     textTheme: TextTheme(
