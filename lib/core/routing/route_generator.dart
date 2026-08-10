@@ -2,6 +2,7 @@ import 'package:derpy/core/routing/routes.dart';
 import 'package:derpy/features/auth/presentation/pages/sign_in_page.dart';
 import 'package:flutter/material.dart';
 import '../../features/auth/presentation/pages/sign_up_page.dart';
+import '../../features/home/presentation/pages/home_tap.dart';
 import '../../features/onboarding/presentation/pages/onboarding_page.dart';
 import '../../features/onboarding/presentation/pages/welcome_page.dart';
 
@@ -18,6 +19,8 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => const SignupPage());
       case Routes.signIn:
         return MaterialPageRoute(builder: (_) => const SignInPage());
+      case Routes.home:
+        return MaterialPageRoute(builder: (_) => const HomeTap());
       default:
         return MaterialPageRoute(
           builder: (_) =>
