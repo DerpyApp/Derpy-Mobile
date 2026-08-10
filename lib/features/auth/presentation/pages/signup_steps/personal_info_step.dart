@@ -25,26 +25,28 @@ class PersonalInfoStepState extends State<PersonalInfoStep> {
         padding: EdgeInsets.symmetric(horizontal: 24.w),
         child: Form(
           key: _formKey,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                'Personal Information',
-                style: AppTextStyles.headlineMedium.copyWith(
-                  color: AppColors.white,
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Personal Information',
+                  style: AppTextStyles.headlineMedium.copyWith(
+                    color: AppColors.white,
+                  ),
                 ),
-              ),
-              SizedBox(height: 8.h),
-              Text(
-                'Tell us about yourself',
-                style: AppTextStyles.titleSmall.copyWith(color: AppColors.white),
-              ),
-              SizedBox(height: 24.h),
-              Expanded(child: PersonalInfo(
-                formKey: _formKey,
-              )),
-              SizedBox(height: 20.h),
-            ],
+                SizedBox(height: 8.h),
+                Text(
+                  'Tell us about yourself',
+                  style: AppTextStyles.titleSmall.copyWith(color: AppColors.white),
+                ),
+                SizedBox(height: 24.h),
+                PersonalInfo(
+                  formKey: _formKey,
+                ),
+                SizedBox(height: 20.h),
+              ],
+            ),
           ),
         ),
       ),

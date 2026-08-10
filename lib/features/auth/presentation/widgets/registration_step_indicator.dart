@@ -10,7 +10,7 @@ class RegistrationStepIndicator extends StatelessWidget {
   const RegistrationStepIndicator({
     super.key,
     required this.currentStep,
-    this.totalSteps = 4,
+    this.totalSteps = 3,
   });
 
   final int currentStep;

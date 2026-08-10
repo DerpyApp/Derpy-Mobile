@@ -5,13 +5,10 @@ import 'package:derpy/core/widgets/default_text_form_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:intl/intl.dart';
 import 'package:phone_form_field/phone_form_field.dart';
 
 import '../../../../core/helpers/app_validator.dart';
 import '../../../../core/theme/app_colors.dart';
-import '../cubit/signup_cubit.dart';
-import 'gender_selector.dart';
 
 class ContactDetails extends StatefulWidget {
   final GlobalKey<FormState> formKey;
@@ -78,7 +75,7 @@ class ContactDetailsState extends State<ContactDetails> {
           width: double.infinity,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(AppRadius.xl),
-            border: Border.all(color: AppColors.white),
+            border: Border.all(color: AppColors.secondary),
           ),
           child: SafeArea(
             child: Column(
@@ -104,7 +101,7 @@ class ContactDetailsState extends State<ContactDetails> {
                     autovalidateMode: AutovalidateMode.onUserInteraction,
                     controller: phoneNumberController,
                     autofocus: false,
-                    selectorNavigator: const BottomSheetNavigator(),
+                    showFlagInInput: true,
                     decoration: InputDecoration(
                       hintText: 'Phone Number',
                       hintStyle: AppTextStyles.bodyMedium.copyWith(
@@ -115,7 +112,7 @@ class ContactDetailsState extends State<ContactDetails> {
                       enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(AppRadius.md),
                         borderSide: BorderSide(
-                          color: phoneError ? AppColors.error : AppColors.white,
+                          color: phoneError ? AppColors.error : AppColors.secondary,
                         ),
                       ),
                       focusedBorder: OutlineInputBorder(

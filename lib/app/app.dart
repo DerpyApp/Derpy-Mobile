@@ -1,5 +1,6 @@
 import 'package:derpy/core/cache/cache_helper.dart';
 import 'package:derpy/core/routing/routes.dart';
+import 'package:derpy/features/auth/presentation/pages/signup_steps/success_step.dart';
 import 'package:flutter/material.dart';
 
 import '../core/cache/cache_keys.dart';
@@ -15,6 +16,7 @@ class App extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Derpy',
+      home: const SuccessStep(),
       navigatorKey: NavigationService.navigatorKey,
       theme: AppTheme.lightTheme,
       initialRoute: CacheHelper.getBool(key: CacheKeys.onboardingSeen)

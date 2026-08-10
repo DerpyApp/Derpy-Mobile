@@ -24,6 +24,8 @@ class _SignupPageState extends State<SignupPage> {
       GlobalKey<PersonalInfoStepState>();
   final GlobalKey<ContactDetailsStepState> contactDetailsKey =
       GlobalKey<ContactDetailsStepState>();
+  final GlobalKey<CreatePasswordStepState> createPasswordKey =
+      GlobalKey<CreatePasswordStepState>();
 
   @override
   void dispose() {
@@ -48,25 +50,28 @@ class _SignupPageState extends State<SignupPage> {
                       return Stack(
                         alignment: Alignment.center,
                         children: [
-                          if (state.currentStep > 0)
-                            Align(
-                              alignment: Alignment.centerLeft,
-                              child: TextButton(
-                                onPressed: () {
+                          Align(
+                            alignment: Alignment.centerLeft,
+                            child: TextButton(
+                              onPressed: () {
+                                if (state.currentStep == 0) {
+                                  Navigator.pop(context);
+                                } else {
                                   _pageController.previousPage(
                                     duration: AppDurations.medium,
                                     curve: Curves.easeInOut,
                                   );
-                                },
-                                child: Text(
-                                  'Back',
-                                  style: TextStyle(
-                                    decoration: TextDecoration.underline,
-                                    decorationColor: AppColors.greenHover,
-                                  ),
+                                }
+                              },
+                              child: Text(
+                                'Back',
+                                style: TextStyle(
+                                  decoration: TextDecoration.underline,
+                                  decorationColor: AppColors.greenHover,
                                 ),
                               ),
                             ),
+                          ),
                           Image.asset('assets/images/derpy.png', width: 60.w),
                         ],
                       );
@@ -77,7 +82,6 @@ class _SignupPageState extends State<SignupPage> {
                     builder: (context, state) {
                       return RegistrationStepIndicator(
                         currentStep: state.currentStep + 1,
-                        totalSteps: 4,
                       );
                     },
                   ),
@@ -98,8 +102,11 @@ class _SignupPageState extends State<SignupPage> {
                           key: contactDetailsKey,
                           pageController: _pageController,
                         ),
-                        CreatePasswordStep(pageController: _pageController),
-                        SuccessStep(pageController: _pageController),
+                        CreatePasswordStep(
+                          key: createPasswordKey,
+                          pageController: _pageController,
+                        ),
+                        SuccessStep(),
                       ],
                     ),
                   ),
@@ -109,25 +116,32 @@ class _SignupPageState extends State<SignupPage> {
                     child: DefaultElevatedButton(
                       onPressed: () {
                         final cubit = context.read<SignupCubit>();
-                        bool isValid = false;
-                        switch (cubit.state.currentStep) {
-                          case 0:
-                            isValid =
-                                personalInfoKey.currentState?.validate() ??
-                                false;
-                            break;
-                          case 1:
-                            isValid =
-                                contactDetailsKey.currentState?.validate() ??
-                                false;
-                            break;
+                        final currentStep = cubit.state.currentStep;
+                        bool isValid = true;
+                        if (currentStep == 0) {
+                          isValid =
+                              personalInfoKey.currentState?.validate() ?? false;
+                        } else if (currentStep == 1) {
+                          isValid =
+                              contactDetailsKey.currentState?.validate() ??
+                              false;
+                        } else if (currentStep == 2) {
+                          isValid =
+                              createPasswordKey.currentState?.validate() ??
+                              false;
+                        }
+                        if (!isValid) return;
+                        if (currentStep == 2) {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (_) => const SuccessStep(),
+                            ),
+                          );
+                          return;
+                        }
 
-                          case 2:
-                            return;
-                        }
-                        if (isValid) {
-                          cubit.onNextStep(_pageController, 4);
-                        }
+                        cubit.onNextStep(_pageController, 4);
                       },
                       label: 'Continue',
                     ),

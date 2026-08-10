@@ -15,6 +15,13 @@ class AppTheme {
       cursorColor: AppColors.greenHover,
     ),
 
+    appBarTheme: AppBarThemeData(
+      backgroundColor: AppColors.primary,
+      foregroundColor: AppColors.white,
+      elevation: 0,
+      centerTitle: true,
+    ),
+
     datePickerTheme: DatePickerThemeData(
       backgroundColor: AppColors.primary,
       headerBackgroundColor: AppColors.primary,
@@ -50,7 +57,7 @@ class AppTheme {
       ),
       enabledBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(AppRadius.md),
-        borderSide: BorderSide(color: AppColors.white),
+        borderSide: BorderSide(color: AppColors.secondary),
       ),
       focusedBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(AppRadius.md),

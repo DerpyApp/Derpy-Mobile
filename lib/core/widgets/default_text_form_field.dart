@@ -59,7 +59,7 @@ class _DefaultTextFormFieldState extends State<DefaultTextFormField> {
                 fit: .scaleDown,
               ),
         suffixIcon: widget.isPassword
-            ? InkWell(
+            ? GestureDetector(
                 onTap: () {
                   isObscure = !isObscure;
                   setState(() {});
