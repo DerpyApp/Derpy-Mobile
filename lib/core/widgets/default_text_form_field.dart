@@ -7,13 +7,15 @@ class DefaultTextFormField extends StatefulWidget {
   final String? Function(String?)? validator;
   final TextEditingController? controller;
   final void Function(String)? onChange;
+  final VoidCallback? onTap;
   final String? prefixIconImageName;
   final String? suffixIconImageName;
+  final TextInputAction? textInputAction;
   final bool isPassword;
   final int maxLine;
   final bool readOnly;
   final bool enabled;
-
+  final TextInputType keyboardType;
 
   const DefaultTextFormField({
     super.key,
@@ -21,12 +23,15 @@ class DefaultTextFormField extends StatefulWidget {
     this.validator,
     this.controller,
     this.onChange,
+    this.onTap,
     this.prefixIconImageName,
     this.suffixIconImageName,
     this.isPassword = false,
     this.maxLine = 1,
     this.readOnly = false,
     this.enabled = true,
+    this.textInputAction,
+    this.keyboardType = TextInputType.text,
   });
 
   @override
@@ -39,7 +44,7 @@ class _DefaultTextFormFieldState extends State<DefaultTextFormField> {
   Widget build(BuildContext context) {
     return TextFormField(
       style: TextStyle(
-        color: Theme.of(context).primaryColor,
+        color: AppColors.white,
         fontSize: 16,
         fontWeight: FontWeight.w500,
       ),
@@ -54,14 +59,20 @@ class _DefaultTextFormFieldState extends State<DefaultTextFormField> {
                 fit: .scaleDown,
               ),
         suffixIcon: widget.isPassword
-            ? InkWell(
+            ? GestureDetector(
                 onTap: () {
                   isObscure = !isObscure;
                   setState(() {});
                 },
                 child: isObscure
-                    ? Icon(Icons.visibility_outlined, color: AppColors.lightGray)
-                    : Icon(Icons.visibility_off_outlined, color: AppColors.lightGray),
+                    ? Icon(
+                        Icons.visibility_outlined,
+                        color: AppColors.lightGray,
+                      )
+                    : Icon(
+                        Icons.visibility_off_outlined,
+                        color: AppColors.lightGray,
+                      ),
               )
             : widget.suffixIconImageName == null
             ? null
@@ -72,16 +83,18 @@ class _DefaultTextFormFieldState extends State<DefaultTextFormField> {
                 fit: .scaleDown,
               ),
       ),
+      onTap: widget.onTap,
       onChanged: widget.onChange,
       validator: widget.validator,
       controller: widget.controller,
       obscureText: widget.isPassword && isObscure,
       autovalidateMode: .onUserInteraction,
-      cursorColor: Theme.of(context).primaryColor,
       onTapOutside: (_) => FocusScope.of(context).unfocus(),
       maxLines: widget.maxLine,
       readOnly: widget.readOnly,
       enabled: widget.enabled,
+      textInputAction: widget.textInputAction,
+      keyboardType: widget.keyboardType,
     );
   }
 }

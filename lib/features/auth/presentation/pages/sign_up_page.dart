@@ -1,29 +1,157 @@
+import 'package:derpy/core/theme/app_colors.dart';
+import 'package:derpy/core/theme/app_durations.dart';
+import 'package:derpy/features/auth/presentation/pages/signup_steps/contact_details_step.dart';
+import 'package:derpy/features/auth/presentation/pages/signup_steps/create_password_step.dart';
+import 'package:derpy/features/auth/presentation/pages/signup_steps/personal_info_step.dart';
+import 'package:derpy/features/auth/presentation/pages/signup_steps/success_step.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../../../../core/widgets/default_elevated_button.dart';
+import '../cubit/signup_cubit.dart';
+import '../widgets/registration_step_indicator.dart';
 
-import '../../../onboarding/presentation/widgets/personal_info.dart';
-import '../../../onboarding/presentation/widgets/registration_step_indicator.dart';
+class SignupPage extends StatefulWidget {
+  const SignupPage({super.key});
 
-class SignUpPage extends StatelessWidget {
-  const SignUpPage({super.key});
+  @override
+  State<SignupPage> createState() => _SignupPageState();
+}
+
+class _SignupPageState extends State<SignupPage> {
+  final PageController _pageController = PageController();
+  final GlobalKey<PersonalInfoStepState> personalInfoKey =
+      GlobalKey<PersonalInfoStepState>();
+  final GlobalKey<ContactDetailsStepState> contactDetailsKey =
+      GlobalKey<ContactDetailsStepState>();
+  final GlobalKey<CreatePasswordStepState> createPasswordKey =
+      GlobalKey<CreatePasswordStepState>();
+
+  @override
+  void dispose() {
+    _pageController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(24),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Image.asset('assets/images/derpy.png'),
-              SizedBox(height: 21.w),
-              RegistrationStepIndicator(currentStep: 1,),
-              SizedBox(height: 35.w),
-              PersonalInfo(),
-            ],
-          ),
-        ),
+    return BlocProvider(
+      create: (_) => SignupCubit(),
+      child: Builder(
+        builder: (context) {
+          return Scaffold(
+            resizeToAvoidBottomInset: false,
+            body: SafeArea(
+              child: Column(
+                children: [
+                  SizedBox(height: 20.h),
+                  BlocBuilder<SignupCubit, SignupState>(
+                    builder: (context, state) {
+                      return Stack(
+                        alignment: Alignment.center,
+                        children: [
+                          Align(
+                            alignment: Alignment.centerLeft,
+                            child: TextButton(
+                              onPressed: () {
+                                if (state.currentStep == 0) {
+                                  Navigator.pop(context);
+                                } else {
+                                  _pageController.previousPage(
+                                    duration: AppDurations.medium,
+                                    curve: Curves.easeInOut,
+                                  );
+                                }
+                              },
+                              child: Text(
+                                'Back',
+                                style: TextStyle(
+                                  decoration: TextDecoration.underline,
+                                  decorationColor: AppColors.greenHover,
+                                ),
+                              ),
+                            ),
+                          ),
+                          Image.asset('assets/images/derpy.png', width: 60.w),
+                        ],
+                      );
+                    },
+                  ),
+                  SizedBox(height: 20.h),
+                  BlocBuilder<SignupCubit, SignupState>(
+                    builder: (context, state) {
+                      return RegistrationStepIndicator(
+                        currentStep: state.currentStep + 1,
+                      );
+                    },
+                  ),
+                  SizedBox(height: 20.h),
+                  Expanded(
+                    child: PageView(
+                      controller: _pageController,
+                      physics: const NeverScrollableScrollPhysics(),
+                      onPageChanged: (index) {
+                        context.read<SignupCubit>().onStepChanged(index);
+                      },
+                      children: [
+                        PersonalInfoStep(
+                          key: personalInfoKey,
+                          pageController: _pageController,
+                        ),
+                        ContactDetailsStep(
+                          key: contactDetailsKey,
+                          pageController: _pageController,
+                        ),
+                        CreatePasswordStep(
+                          key: createPasswordKey,
+                          pageController: _pageController,
+                        ),
+                        SuccessStep(),
+                      ],
+                    ),
+                  ),
+                  SizedBox(height: 20.h),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    child: DefaultElevatedButton(
+                      onPressed: () {
+                        final cubit = context.read<SignupCubit>();
+                        final currentStep = cubit.state.currentStep;
+                        bool isValid = true;
+                        if (currentStep == 0) {
+                          isValid =
+                              personalInfoKey.currentState?.validate() ?? false;
+                        } else if (currentStep == 1) {
+                          isValid =
+                              contactDetailsKey.currentState?.validate() ??
+                              false;
+                        } else if (currentStep == 2) {
+                          isValid =
+                              createPasswordKey.currentState?.validate() ??
+                              false;
+                        }
+                        if (!isValid) return;
+                        if (currentStep == 2) {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (_) => const SuccessStep(),
+                            ),
+                          );
+                          return;
+                        }
+
+                        cubit.onNextStep(_pageController, 4);
+                      },
+                      label: 'Continue',
+                    ),
+                  ),
+                  SizedBox(height: 20.h),
+                ],
+              ),
+            ),
+          );
+        },
       ),
     );
   }

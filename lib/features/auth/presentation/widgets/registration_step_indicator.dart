@@ -1,3 +1,4 @@
+import 'package:derpy/core/theme/font_weight_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -20,7 +21,7 @@ class RegistrationStepIndicator extends StatelessWidget {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 14.w, vertical: 6.h),
       decoration: BoxDecoration(
-        border: Border.all(color: Colors.white.withOpacity(0.15)),
+        border: Border.all(color: AppColors.white.withOpacity(0.15)),
         borderRadius: BorderRadius.circular(AppRadius.round),
       ),
       child: Row(
@@ -30,7 +31,7 @@ class RegistrationStepIndicator extends StatelessWidget {
             'Step $currentStep of $totalSteps',
             style: AppTextStyles.labelMedium.copyWith(
               color: AppColors.white,
-              fontWeight: FontWeight.w600,
+              fontWeight: FontWeightHelper.semiBold,
             ),
           ),
           SizedBox(width: 12.w),
