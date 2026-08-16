@@ -7,7 +7,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
-
 import '../../../../core/helpers/app_validator.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../cubit/signup_cubit.dart';
@@ -26,6 +25,16 @@ class PersonalInfoState extends State<PersonalInfo> {
   final TextEditingController lastNameController = TextEditingController();
   final TextEditingController usernameController = TextEditingController();
   final TextEditingController dateController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    final state = context.read<SignupCubit>().state;
+    firstNameController.text = state.firstName;
+    lastNameController.text = state.lastName;
+    usernameController.text = state.username;
+    dateController.text = state.dateOfBirth;
+  }
 
   @override
   void dispose() {
@@ -86,9 +95,13 @@ class PersonalInfoState extends State<PersonalInfo> {
                         ),
                         SizedBox(height: 8.h),
                         DefaultTextFormField(
+                          controller: firstNameController,
                           validator: AppValidator.required,
                           hintText: 'First Name',
                           textInputAction: TextInputAction.next,
+                          onChange: (value) {
+                           context.read<SignupCubit>().setFirstName(value);
+                          }
                         ),
                       ],
                     ),
@@ -106,10 +119,14 @@ class PersonalInfoState extends State<PersonalInfo> {
                           ),
                         ),
                         SizedBox(height: 8.h),
-                        const DefaultTextFormField(
+                        DefaultTextFormField(
+                          controller: lastNameController,
                           validator: AppValidator.required,
                           hintText: 'Last Name',
                           textInputAction: TextInputAction.next,
+                          onChange: (value) {
+                           context.read<SignupCubit>().setLastName(value);
+                          }
                         ),
                       ],
                     ),
@@ -126,9 +143,13 @@ class PersonalInfoState extends State<PersonalInfo> {
               ),
               SizedBox(height: 8.h),
               DefaultTextFormField(
+                controller: usernameController,
                 validator: AppValidator.required,
                 hintText: 'UserName',
                 textInputAction: TextInputAction.next,
+                onChange: (value) {
+                  context.read<SignupCubit>().setUsername(value);
+                },
               ),
               SizedBox(height: 16.h),
               Text(
@@ -153,7 +174,9 @@ class PersonalInfoState extends State<PersonalInfo> {
                     initialDate: DateTime(2003),
                   );
                   if (date != null) {
-                    dateController.text = DateFormat('dd MMMM yyyy').format(date);
+                    final formattedDate = DateFormat('dd MMMM yyyy').format(date);
+                    dateController.text = formattedDate;
+                    context.read<SignupCubit>().setDateOfBirth(formattedDate);
                   }
                 },
               ),

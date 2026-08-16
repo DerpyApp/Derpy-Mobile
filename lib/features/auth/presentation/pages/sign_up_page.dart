@@ -135,12 +135,14 @@ class _SignupPageState extends State<SignupPage> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (_) => const SuccessStep(),
+                              builder: (_) => BlocProvider.value(
+                                value: context.read<SignupCubit>(),
+                                child: const SuccessStep(),
+                              ),
                             ),
                           );
                           return;
                         }
-
                         cubit.onNextStep(_pageController, 4);
                       },
                       label: 'Continue',

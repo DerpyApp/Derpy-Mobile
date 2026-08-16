@@ -4,15 +4,15 @@ import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_radius.dart';
 import '../../../../core/theme/app_text_styles.dart';
 
-class SkillLevelSelector extends StatefulWidget {
-  const SkillLevelSelector({super.key});
+class SkillLevelSelector extends StatelessWidget {
+  final int selectedLevel;
+  final ValueChanged<int> onChanged;
 
-  @override
-  State<SkillLevelSelector> createState() => _SkillLevelSelectorState();
-}
-
-class _SkillLevelSelectorState extends State<SkillLevelSelector> {
-  int selectedLevel = 2;
+  const SkillLevelSelector({
+    super.key,
+    required this.selectedLevel,
+    required this.onChanged,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -21,14 +21,19 @@ class _SkillLevelSelectorState extends State<SkillLevelSelector> {
       padding: EdgeInsets.all(24.h),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(AppRadius.xxl),
-        border: Border.all(color: AppColors.secondary, width: 2),
+        border: Border.all(
+          color: AppColors.secondary,
+          width: 2,
+        ),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
             'SLIDE ACROSS 1-5',
-            style: AppTextStyles.bodyLarge.copyWith(color: AppColors.white),
+            style: AppTextStyles.bodyLarge.copyWith(
+              color: AppColors.white,
+            ),
           ),
           SizedBox(height: 14.h),
           Center(
@@ -38,14 +43,13 @@ class _SkillLevelSelectorState extends State<SkillLevelSelector> {
                 children: List.generate(5, (index) {
                   final level = index + 1;
                   final isSelected = selectedLevel == level;
+
                   return Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       GestureDetector(
                         onTap: () {
-                          setState(() {
-                            selectedLevel = level;
-                          });
+                          onChanged(level);
                         },
                         child: Container(
                           width: 33.w,
@@ -76,7 +80,10 @@ class _SkillLevelSelectorState extends State<SkillLevelSelector> {
                       if (index < 4)
                         SizedBox(
                           width: 33.w,
-                          child: Container(height: 3.h, color: AppColors.white),
+                          child: Container(
+                            height: 3.h,
+                            color: AppColors.white,
+                          ),
                         ),
                     ],
                   );
