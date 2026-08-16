@@ -3,12 +3,14 @@ import 'package:derpy/core/theme/app_text_styles.dart';
 import 'package:derpy/core/theme/font_weight_helper.dart';
 import 'package:derpy/core/widgets/default_text_form_field.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:phone_form_field/phone_form_field.dart';
 
 import '../../../../core/helpers/app_validator.dart';
 import '../../../../core/theme/app_colors.dart';
+import '../cubit/signup_cubit.dart';
 
 class ContactDetails extends StatefulWidget {
   final GlobalKey<FormState> formKey;
@@ -19,29 +21,37 @@ class ContactDetails extends StatefulWidget {
 }
 
 class ContactDetailsState extends State<ContactDetails> {
-  late PhoneController phoneNumberController;
   final TextEditingController emailController = TextEditingController();
   bool phoneError = false;
 
-  bool? validate() {
-    final isPhoneValid = phoneNumberController.value?.nsn.isNotEmpty;
+  bool validate() {
+    final isPhoneValid = context
+        .read<SignupCubit>()
+        .state
+        .phoneNumber
+        .isNotEmpty;
+
     setState(() {
-      phoneError = !isPhoneValid!;
+      phoneError = !isPhoneValid;
     });
+
     return isPhoneValid;
   }
 
   @override
   void initState() {
     super.initState();
-    phoneNumberController = PhoneController(
-      PhoneNumber(isoCode: 'EG', nsn: ''),
-    );
+
+    final state = context.read<SignupCubit>().state;
+
+    debugPrint('INIT PHONE: ${state.phoneNumber}');
+    debugPrint('INIT ISO: ${state.phoneIsoCode}');
+
+    emailController.text = state.email;
   }
 
   @override
   void dispose() {
-    phoneNumberController.dispose();
     emailController.dispose();
     super.dispose();
   }
@@ -99,7 +109,16 @@ class ContactDetailsState extends State<ContactDetails> {
                   ),
                   child: PhoneFormField(
                     autovalidateMode: AutovalidateMode.onUserInteraction,
-                    controller: phoneNumberController,
+                    initialValue:
+                        context.read<SignupCubit>().state.phoneNumber.isEmpty
+                        ? PhoneNumber(isoCode: 'EG', nsn: '')
+                        : PhoneNumber(
+                            isoCode: context
+                                .read<SignupCubit>()
+                                .state
+                                .phoneIsoCode,
+                            nsn: context.read<SignupCubit>().state.phoneNumber,
+                          ),
                     autofocus: false,
                     showFlagInInput: true,
                     decoration: InputDecoration(
@@ -112,7 +131,9 @@ class ContactDetailsState extends State<ContactDetails> {
                       enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(AppRadius.md),
                         borderSide: BorderSide(
-                          color: phoneError ? AppColors.error : AppColors.secondary,
+                          color: phoneError
+                              ? AppColors.error
+                              : AppColors.secondary,
                         ),
                       ),
                       focusedBorder: OutlineInputBorder(
@@ -125,7 +146,21 @@ class ContactDetailsState extends State<ContactDetails> {
                       ),
                     ),
                     onChanged: (phone) {
-                      if (phoneError && phone!.nsn.isNotEmpty) {
+                      if (phone == null) return;
+
+                      debugPrint('PHONE CHANGED: ${phone.nsn}');
+                      debugPrint('ISO CODE: ${phone.isoCode}');
+
+                      context.read<SignupCubit>().setPhoneNumber(phone.nsn);
+                      context.read<SignupCubit>().setPhoneIsoCode(
+                        phone.isoCode,
+                      );
+
+                      debugPrint(
+                        'STATE PHONE: ${context.read<SignupCubit>().state.phoneNumber}',
+                      );
+
+                      if (phoneError && phone.nsn.isNotEmpty) {
                         setState(() {
                           phoneError = false;
                         });
@@ -155,6 +190,9 @@ class ContactDetailsState extends State<ContactDetails> {
                   hintText: 'Enter your email address',
                   controller: emailController,
                   keyboardType: TextInputType.emailAddress,
+                  onChange: (value) {
+                    context.read<SignupCubit>().setEmail(value);
+                  },
                 ),
               ],
             ),

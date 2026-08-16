@@ -1,38 +1,32 @@
+import 'package:derpy/features/auth/presentation/cubit/signup_cubit.dart';
+import 'package:derpy/features/auth/presentation/widgets/favorites_selector.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_text_styles.dart';
-import 'favorites_selector.dart';
 
-class ProfileFavorites extends StatefulWidget {
+class ProfileFavorites extends StatelessWidget {
   const ProfileFavorites({super.key});
-
-  @override
-  State<ProfileFavorites> createState() => _ProfileFavoritesState();
-}
-
-class _ProfileFavoritesState extends State<ProfileFavorites> {
-  Set<String> selectedSports = {'Football'};
 
   @override
   Widget build(BuildContext context) {
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Row(
           children: [
             SvgPicture.asset(
-              'assets/icons/favorite.svg',
-              width: 40.w,
-              height: 40.w,
-              fit: BoxFit.scaleDown,
+              'assets/icons/profile.svg',
+              width: 24,
+              height: 24,
+              fit: .scaleDown,
             ),
             SizedBox(width: 8.w),
             Text(
-              'YOUR INTERESTS',
-              style: AppTextStyles.headlineMedium.copyWith(
+              'FAVORITES',
+              style: AppTextStyles.titleMedium.copyWith(
                 color: AppColors.greenHover,
                 fontWeight: FontWeight.w600,
               ),
@@ -40,16 +34,14 @@ class _ProfileFavoritesState extends State<ProfileFavorites> {
           ],
         ),
         SizedBox(height: 16.h),
-        FavoritesSelector(
-          selectedSports: selectedSports,
-          onChanged: (sport) {
-            setState(() {
-              if (selectedSports.contains(sport)) {
-                selectedSports.remove(sport);
-              } else {
-                selectedSports.add(sport);
-              }
-            });
+        BlocBuilder<SignupCubit, SignupState>(
+          builder: (context, state) {
+            return FavoritesSelector(
+              selectedSports: state.favoriteSports,
+              onChanged: (sport) {
+                context.read<SignupCubit>().toggleFavoriteSport(sport);
+              },
+            );
           },
         ),
       ],
