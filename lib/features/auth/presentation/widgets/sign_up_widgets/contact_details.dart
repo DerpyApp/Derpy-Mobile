@@ -8,9 +8,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:phone_form_field/phone_form_field.dart';
 
-import '../../../../core/helpers/app_validator.dart';
-import '../../../../core/theme/app_colors.dart';
-import '../cubit/signup_cubit.dart';
+import '../../../../../core/helpers/app_validator.dart';
+import '../../../../../core/theme/app_colors.dart';
+import '../../cubit/signup_cubit.dart';
 
 class ContactDetails extends StatefulWidget {
   final GlobalKey<FormState> formKey;

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import '../../widgets/create_password.dart';
+
+import '../../../widgets/sign_up_widgets/create_password.dart';
 
 class CreatePasswordStep extends StatefulWidget {
   final PageController pageController;

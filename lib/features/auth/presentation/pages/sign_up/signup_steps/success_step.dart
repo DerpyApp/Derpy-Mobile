@@ -2,14 +2,15 @@ import 'package:derpy/core/routing/routes.dart';
 import 'package:derpy/core/services/navigation_service.dart';
 import 'package:derpy/core/theme/app_text_styles.dart';
 import 'package:derpy/core/widgets/default_elevated_button.dart';
-import 'package:derpy/features/auth/presentation/widgets/profile_favorites.dart';
-import 'package:derpy/features/auth/presentation/widgets/profile_setup.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../../../../../core/theme/app_colors.dart';
-import '../../widgets/profile_position.dart';
-import '../../widgets/profile_skill_level.dart';
-import '../../widgets/your_city.dart';
+
+import '../../../../../../core/theme/app_colors.dart';
+import '../../../widgets/sign_up_widgets/profile_favorites.dart';
+import '../../../widgets/sign_up_widgets/profile_position.dart';
+import '../../../widgets/sign_up_widgets/profile_setup.dart';
+import '../../../widgets/sign_up_widgets/profile_skill_level.dart';
+import '../../../widgets/sign_up_widgets/your_city.dart';
 
 class SuccessStep extends StatelessWidget {
   const SuccessStep({super.key});

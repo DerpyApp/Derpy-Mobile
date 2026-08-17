@@ -1,15 +1,15 @@
 import 'package:derpy/core/theme/app_colors.dart';
 import 'package:derpy/core/theme/app_durations.dart';
-import 'package:derpy/features/auth/presentation/pages/signup_steps/contact_details_step.dart';
-import 'package:derpy/features/auth/presentation/pages/signup_steps/create_password_step.dart';
-import 'package:derpy/features/auth/presentation/pages/signup_steps/personal_info_step.dart';
-import 'package:derpy/features/auth/presentation/pages/signup_steps/success_step.dart';
+import 'package:derpy/features/auth/presentation/pages/sign_up/signup_steps/contact_details_step.dart';
+import 'package:derpy/features/auth/presentation/pages/sign_up/signup_steps/create_password_step.dart';
+import 'package:derpy/features/auth/presentation/pages/sign_up/signup_steps/personal_info_step.dart';
+import 'package:derpy/features/auth/presentation/pages/sign_up/signup_steps/success_step.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../../../../core/widgets/default_elevated_button.dart';
-import '../cubit/signup_cubit.dart';
-import '../widgets/registration_step_indicator.dart';
+import '../../../../../core/widgets/default_elevated_button.dart';
+import '../../cubit/signup_cubit.dart';
+import '../../widgets/sign_up_widgets/registration_step_indicator.dart';
 
 class SignupPage extends StatefulWidget {
   const SignupPage({super.key});

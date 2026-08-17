@@ -7,6 +7,7 @@ class DefaultElevatedButton extends StatelessWidget {
   final VoidCallback onPressed;
   final Color? foregroundColor;
   final Color? backgroundColor;
+  final Color? borderColor;
   final String? icon;
 
   const DefaultElevatedButton({
@@ -14,6 +15,7 @@ class DefaultElevatedButton extends StatelessWidget {
     required this.label,
     this.foregroundColor,
     this.backgroundColor,
+    this.borderColor,
     this.icon,
     super.key,
   });
@@ -26,6 +28,10 @@ class DefaultElevatedButton extends StatelessWidget {
         backgroundColor: backgroundColor ?? AppColors.greenHover,
         foregroundColor: foregroundColor ?? AppColors.primary,
         fixedSize: Size(MediaQuery.sizeOf(context).width, 48),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10),
+          side: BorderSide(color: borderColor ?? Colors.transparent),
+        ),
       ),
       child: Row(
         mainAxisSize: MainAxisSize.min,

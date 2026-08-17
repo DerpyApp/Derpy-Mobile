@@ -7,9 +7,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
-import '../../../../core/helpers/app_validator.dart';
-import '../../../../core/theme/app_colors.dart';
-import '../cubit/signup_cubit.dart';
+import '../../../../../core/helpers/app_validator.dart';
+import '../../../../../core/theme/app_colors.dart';
+import '../../cubit/signup_cubit.dart';
 import 'gender_selector.dart';
 
 class PersonalInfo extends StatefulWidget {

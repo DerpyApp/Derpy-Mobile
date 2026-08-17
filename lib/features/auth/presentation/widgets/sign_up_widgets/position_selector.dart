@@ -1,29 +1,29 @@
 import 'package:derpy/core/theme/app_radius.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../../../../core/theme/app_colors.dart';
-import '../../../../core/theme/app_text_styles.dart';
+import '../../../../../core/theme/app_colors.dart';
+import '../../../../../core/theme/app_text_styles.dart';
 
-class YourCitySelector extends StatefulWidget {
-  final String? selectedCity;
+class PositionSelector extends StatefulWidget {
+  final String? selectedPosition;
   final ValueChanged<String> onChanged;
-  const YourCitySelector({
+  const PositionSelector({
     super.key,
-    required this.selectedCity,
+    required this.selectedPosition,
     required this.onChanged,
   });
 
   @override
-  State<YourCitySelector> createState() => _YourCitySelectorState();
+  State<PositionSelector> createState() => _PositionSelectorState();
 }
 
-class _YourCitySelectorState extends State<YourCitySelector> {
-  final List<String> cities = [
-    'Cairo',
-    'New Cairo',
-    'Sheikh Zayed',
-    'Maadi',
-    'North Coast',
+class _PositionSelectorState extends State<PositionSelector> {
+  final List<String> positions = [
+    'Goalkeeper',
+    'Defender',
+    'Midfielder',
+    'Winger',
+    'Forward',
   ];
 
   @override
@@ -39,18 +39,18 @@ class _YourCitySelectorState extends State<YourCitySelector> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Choose the city you live in',
+            'Tab the role that fits you well on the pitch',
             style: AppTextStyles.bodyLarge.copyWith(color: AppColors.white),
           ),
           SizedBox(height: 16.h),
           Wrap(
             spacing: 8.w,
             runSpacing: 8.h,
-            children: cities.map((city) {
-              final isSelected = widget.selectedCity == city;
+            children: positions.map((position) {
+              final isSelected = widget.selectedPosition == position;
               return GestureDetector(
                 onTap: () {
-                  widget.onChanged(city);
+                  widget.onChanged(position);
                 },
                 child: Container(
                   padding: EdgeInsets.all(10),
@@ -63,7 +63,7 @@ class _YourCitySelectorState extends State<YourCitySelector> {
                     ),
                   ),
                   child: Text(
-                    city,
+                    position,
                     style: AppTextStyles.bodySmall.copyWith(
                       color: isSelected
                           ? AppColors.greenHover

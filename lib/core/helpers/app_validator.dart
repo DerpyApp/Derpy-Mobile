@@ -62,4 +62,15 @@ class AppValidator {
     }
     return null;
   }
+
+  static String? otp(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Please enter the verification code';
+    }
+
+    if (value.length != 5) {
+      return 'Verification code must be 5 digits';
+    }
+    return null;
+  }
 }

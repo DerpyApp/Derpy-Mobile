@@ -1,8 +1,9 @@
-import 'package:derpy/features/auth/presentation/widgets/personal_info.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../../../../../core/theme/app_colors.dart';
-import '../../../../../core/theme/app_text_styles.dart';
+
+import '../../../../../../core/theme/app_colors.dart';
+import '../../../../../../core/theme/app_text_styles.dart';
+import '../../../widgets/sign_up_widgets/personal_info.dart';
 
 class PersonalInfoStep extends StatefulWidget {
   final PageController pageController;
