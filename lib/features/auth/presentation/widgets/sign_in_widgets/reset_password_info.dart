@@ -51,6 +51,8 @@ class _ResetPasswordInfoState extends State<ResetPasswordInfo> {
               hintText: 'x234df51sa561d',
               isPassword: true,
               validator: AppValidator.password,
+              textInputAction: TextInputAction.next,
+
             ),
             const SizedBox(height: 16),
             Text(
@@ -63,6 +65,7 @@ class _ResetPasswordInfoState extends State<ResetPasswordInfo> {
               hintText: 'x234df51sa561d',
               isPassword: true,
               validator: AppValidator.password,
+              textInputAction: TextInputAction.done,
             ),
             const SizedBox(height: 16),
             DefaultElevatedButton(

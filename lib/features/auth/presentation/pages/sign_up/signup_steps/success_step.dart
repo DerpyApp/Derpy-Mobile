@@ -4,6 +4,7 @@ import 'package:derpy/core/theme/app_text_styles.dart';
 import 'package:derpy/core/widgets/default_elevated_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 
 import '../../../../../../core/theme/app_colors.dart';
 import '../../../widgets/sign_up_widgets/profile_favorites.dart';
@@ -35,12 +36,18 @@ class SuccessStep extends StatelessWidget {
                         onTap: () {
                           Navigator.pop(context);
                         },
-                        child: Text(
-                          'Back',
-                          style: AppTextStyles.bodyLarge.copyWith(
-                            color: AppColors.greenHover,
-                            decoration: TextDecoration.underline,
-                            decorationColor: AppColors.greenHover,
+                        child: Container(
+                          width: 40,
+                          height: 40,
+                          decoration: BoxDecoration(
+                            border: Border.all(color: AppColors.secondary),
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          child: SvgPicture.asset(
+                            'assets/icons/arrow-left.svg',
+                            width: 24,
+                            height: 24,
+                            fit: .scaleDown,
                           ),
                         ),
                       ),

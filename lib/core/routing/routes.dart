@@ -7,5 +7,6 @@ class Routes {
   static const forgotPassword = '/forget-password';
   static const otpVerification = '/otp-verification';
   static const resetPassword = '/reset-password';
+  static const privacyPolicy = '/privacy-policy';
   static const home = '/home';
 }

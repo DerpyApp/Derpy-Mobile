@@ -7,6 +7,7 @@ import 'package:derpy/features/auth/presentation/pages/sign_up/signup_steps/succ
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 import '../../../../../core/widgets/default_elevated_button.dart';
 import '../../cubit/signup_cubit.dart';
 import '../../widgets/sign_up_widgets/registration_step_indicator.dart';
@@ -63,11 +64,18 @@ class _SignupPageState extends State<SignupPage> {
                                   );
                                 }
                               },
-                              child: Text(
-                                'Back',
-                                style: TextStyle(
-                                  decoration: TextDecoration.underline,
-                                  decorationColor: AppColors.greenHover,
+                              child: Container(
+                                width: 40,
+                                height: 40,
+                                decoration: BoxDecoration(
+                                  border: Border.all(color: AppColors.secondary),
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                                child: SvgPicture.asset(
+                                  'assets/icons/arrow-left.svg',
+                                  width: 24,
+                                  height: 24,
+                                  fit: .scaleDown,
                                 ),
                               ),
                             ),

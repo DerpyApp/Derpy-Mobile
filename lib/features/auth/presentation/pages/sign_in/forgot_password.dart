@@ -1,5 +1,8 @@
 import 'package:derpy/features/auth/presentation/widgets/sign_in_widgets/signIn_header.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import '../../../../../core/routing/routes.dart';
+import '../../../../../core/services/navigation_service.dart';
 import '../../../../../core/theme/app_colors.dart';
 import '../../../../../core/theme/app_text_styles.dart';
 import '../../widgets/sign_in_widgets/forgot_password_info.dart';
@@ -26,9 +29,7 @@ class ForgotPassword extends StatelessWidget {
                 icon: 'key',
               ),
               const SizedBox(height: 16),
-              ForgotPasswordInfo(
-                formKey: formKey,
-              ),
+              ForgotPasswordInfo(formKey: formKey),
               Spacer(),
               RichText(
                 textAlign: TextAlign.center,
@@ -47,6 +48,10 @@ class ForgotPassword extends StatelessWidget {
                         decorationColor: AppColors.greenHover,
                         decorationThickness: 1.5,
                       ),
+                      recognizer: TapGestureRecognizer()
+                        ..onTap = () {
+                          NavigationService.pushNamed(Routes.privacyPolicy);
+                        },
                     ),
                   ],
                 ),

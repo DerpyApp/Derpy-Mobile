@@ -1,6 +1,7 @@
 import 'package:derpy/core/routing/routes.dart';
 import 'package:derpy/core/services/navigation_service.dart';
 import 'package:derpy/features/auth/presentation/widgets/sign_in_widgets/signIn_header.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -84,6 +85,12 @@ class _OTPVerificationState extends State<OTPVerification> {
                               decorationColor: AppColors.greenHover,
                               decorationThickness: 1.5,
                             ),
+                            recognizer: TapGestureRecognizer()
+                              ..onTap = () {
+                                NavigationService.pushNamed(
+                                  Routes.privacyPolicy,
+                                );
+                              },
                           ),
                         ],
                       ),
