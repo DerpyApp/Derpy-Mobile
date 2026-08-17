@@ -1,6 +1,9 @@
 import 'package:derpy/features/auth/presentation/widgets/sign_in_widgets/signIn_header.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../../core/routing/routes.dart';
+import '../../../../../core/services/navigation_service.dart';
 import '../../../../../core/theme/app_colors.dart';
 import '../../../../../core/theme/app_text_styles.dart';
 import '../../widgets/sign_in_widgets/reset_password_info.dart';
@@ -46,6 +49,10 @@ class ResetPassword extends StatelessWidget {
                         decorationColor: AppColors.greenHover,
                         decorationThickness: 1.5,
                       ),
+                      recognizer: TapGestureRecognizer()
+                        ..onTap = () {
+                          NavigationService.pushNamed(Routes.privacyPolicy);
+                        },
                     ),
                   ],
                 ),

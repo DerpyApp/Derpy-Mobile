@@ -21,6 +21,13 @@ class App extends StatelessWidget {
           ? Routes.welcome
           : Routes.onboarding,
       onGenerateRoute: RouteGenerator.generateRoute,
+      builder: (context, child) {
+        return MediaQuery.withClampedTextScaling(
+          minScaleFactor: 0.9,
+          maxScaleFactor: 1.2,
+          child: child!,
+        );
+      },
     );
   }
 }

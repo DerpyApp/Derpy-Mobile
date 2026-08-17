@@ -15,6 +15,8 @@ class AppTheme {
       cursorColor: AppColors.greenHover,
     ),
 
+
+
     appBarTheme: AppBarThemeData(
       backgroundColor: AppColors.primary,
       foregroundColor: AppColors.white,

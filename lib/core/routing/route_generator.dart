@@ -1,39 +1,66 @@
-import 'package:derpy/core/routing/routes.dart';
-import 'package:derpy/features/auth/presentation/pages/sign_in/sign_in_page.dart';
 import 'package:flutter/material.dart';
+
 import '../../features/auth/presentation/pages/sign_in/forgot_password.dart';
-import '../../features/auth/presentation/pages/sign_in/reset_password.dart';
-import '../../features/auth/presentation/pages/sign_up/sign_up_page.dart';
 import '../../features/auth/presentation/pages/sign_in/otp_verification.dart';
+import '../../features/auth/presentation/pages/sign_in/privacy_policy.dart';
+import '../../features/auth/presentation/pages/sign_in/reset_password.dart';
+import '../../features/auth/presentation/pages/sign_in/sign_in_page.dart';
+import '../../features/auth/presentation/pages/sign_up/sign_up_page.dart';
 import '../../features/home/presentation/pages/home_tap.dart';
 import '../../features/onboarding/presentation/pages/onboarding_page.dart';
 import '../../features/onboarding/presentation/pages/welcome_page.dart';
+import '../routing/routes.dart';
+import '../theme/app_colors.dart';
 
 class RouteGenerator {
   RouteGenerator._();
 
+  static Route<dynamic> _route(Widget page) {
+    return PageRouteBuilder(
+      opaque: true,
+      pageBuilder: (context, animation, secondaryAnimation) {
+        return ColoredBox(color: AppColors.primary, child: page);
+      },
+      transitionsBuilder: (context, animation, secondaryAnimation, child) {
+        return FadeTransition(opacity: animation, child: child);
+      },
+      transitionDuration: const Duration(milliseconds: 100),
+      reverseTransitionDuration: const Duration(milliseconds: 100),
+    );
+  }
+
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
       case Routes.onboarding:
-        return MaterialPageRoute(builder: (_) => const OnboardingPage());
+        return _route(const OnboardingPage());
+
       case Routes.welcome:
-        return MaterialPageRoute(builder: (_) => const WelcomePage());
+        return _route(const WelcomePage());
+
       case Routes.signUp:
-        return MaterialPageRoute(builder: (_) => const SignupPage());
+        return _route(const SignupPage());
+
       case Routes.signIn:
-        return MaterialPageRoute(builder: (_) => const SignInPage());
+        return _route(const SignInPage());
+
       case Routes.forgotPassword:
-        return MaterialPageRoute(builder: (_) => const ForgotPassword());
-      case Routes.home:
-        return MaterialPageRoute(builder: (_) => const HomeTap());
+        return _route(const ForgotPassword());
+
       case Routes.otpVerification:
-        return MaterialPageRoute(builder: (_) => const OTPVerification());
+        return _route(const OTPVerification());
+
       case Routes.resetPassword:
-        return MaterialPageRoute(builder: (_) => const ResetPassword());
+        return _route(const ResetPassword());
+
+      case Routes.privacyPolicy:
+        return _route(const PrivacyPolicy());
+
+      case Routes.home:
+        return _route(const HomeTap());
+
       default:
-        return MaterialPageRoute(
-          builder: (_) =>
-              const Scaffold(body: Center(child: Text('No Route Found'))),
+        return _route(
+          const Scaffold(body: Center(child: Text('No Route Found'))),
         );
     }
   }

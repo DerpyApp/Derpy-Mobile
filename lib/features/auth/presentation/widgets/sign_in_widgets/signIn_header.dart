@@ -27,23 +27,28 @@ class SignInHeader extends StatelessWidget {
           alignment: Alignment.center,
           children: [
             if (isBack)
-            Align(
-              alignment: Alignment.centerLeft,
-              child: Container(
-                width: 40,
-                height: 40,
-                decoration: BoxDecoration(
-                  border: Border.all(color: AppColors.secondary),
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: SvgPicture.asset(
-                  'assets/icons/arrow-left.svg',
-                  width: 24,
-                  height: 24,
-                  fit: .scaleDown,
+              Align(
+                alignment: Alignment.centerLeft,
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.pop(context);
+                  },
+                  child: Container(
+                    width: 40,
+                    height: 40,
+                    decoration: BoxDecoration(
+                      border: Border.all(color: AppColors.secondary),
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: SvgPicture.asset(
+                      'assets/icons/arrow-left.svg',
+                      width: 24,
+                      height: 24,
+                      fit: .scaleDown,
+                    ),
+                  ),
                 ),
               ),
-            ),
             Image.asset('assets/images/derpy.png', width: 60.w, height: 47.h),
           ],
         ),
