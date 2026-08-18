@@ -17,9 +17,7 @@ class App extends StatelessWidget {
       title: 'Derpy',
       navigatorKey: NavigationService.navigatorKey,
       theme: AppTheme.lightTheme,
-      initialRoute: CacheHelper.getBool(key: CacheKeys.onboardingSeen)
-          ? Routes.welcome
-          : Routes.onboarding,
+      initialRoute: Routes.home,
       onGenerateRoute: RouteGenerator.generateRoute,
       builder: (context, child) {
         return MediaQuery.withClampedTextScaling(
