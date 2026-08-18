@@ -8,6 +8,7 @@ import '../cubit/home_cubit.dart';
 import '../cubit/home_state.dart';
 import '../widgets/custom_bottom_nav_bar.dart';
 import '../widgets/home_header.dart';
+import '../widgets/search_item.dart';
 import 'book_page.dart';
 import 'home_page.dart';
 
@@ -19,6 +20,7 @@ class HomeTap extends StatelessWidget {
     return BlocProvider(
       create: (_) => HomeCubit(),
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
         backgroundColor: AppColors.primary,
         body: BlocBuilder<HomeCubit, HomeState>(
           builder: (context, state) {
@@ -29,46 +31,44 @@ class HomeTap extends StatelessWidget {
               const ProfilePage(),
             ];
             return SafeArea(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 24),
-                child: Column(
-                  mainAxisAlignment: .center,
-                  children: [
-                    const SizedBox(height: 16),
-                    HomeHeader(),
-                    Expanded(
-                      child: AnimatedSwitcher(
-                        duration: const Duration(milliseconds: 300),
-                        switchInCurve: Curves.easeInOut,
-                        switchOutCurve: Curves.easeInOut,
-                        transitionBuilder: (child, animation) {
-                          final isForward =
-                              state.currentIndex > state.previousIndex;
-                          final beginOffset = isForward
-                              ? const Offset(1, 0)
-                              : const Offset(-1, 0);
-                          return SlideTransition(
-                            position:
-                                Tween<Offset>(
-                                  begin: beginOffset,
-                                  end: Offset.zero,
-                                ).animate(
-                                  CurvedAnimation(
-                                    parent: animation,
-                                    curve: Curves.easeInOut,
-                                  ),
+              child: Column(
+                mainAxisAlignment: .center,
+                children: [
+                  const SizedBox(height: 16),
+                  HomeHeader(),
+                  SearchItem(),
+                  Expanded(
+                    child: AnimatedSwitcher(
+                      duration: const Duration(milliseconds: 300),
+                      switchInCurve: Curves.easeInOut,
+                      switchOutCurve: Curves.easeInOut,
+                      transitionBuilder: (child, animation) {
+                        final isForward =
+                            state.currentIndex > state.previousIndex;
+                        final beginOffset = isForward
+                            ? const Offset(-1, 0)
+                            : const Offset(1, 0);
+                        return SlideTransition(
+                          position:
+                              Tween<Offset>(
+                                begin: beginOffset,
+                                end: Offset.zero,
+                              ).animate(
+                                CurvedAnimation(
+                                  parent: animation,
+                                  curve: Curves.easeInOut,
                                 ),
-                            child: child,
-                          );
-                        },
-                        child: KeyedSubtree(
-                          key: ValueKey(state.currentIndex),
-                          child: pages[state.currentIndex],
-                        ),
+                              ),
+                          child: child,
+                        );
+                      },
+                      child: KeyedSubtree(
+                        key: ValueKey(state.currentIndex),
+                        child: pages[state.currentIndex],
                       ),
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             );
           },
