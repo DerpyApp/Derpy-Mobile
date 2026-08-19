@@ -6,6 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../features/home/presentation/cubit/location_cubit.dart';
+import '../../features/home/presentation/cubit/location_state.dart';
 import 'location_bottom_sheet.dart';
 
 class LocationItem extends StatelessWidget {
@@ -19,8 +20,8 @@ class LocationItem extends StatelessWidget {
           backgroundColor: Colors.transparent,
           context: context,
           builder: (_) {
-            return BlocProvider(
-              create: (_) => LocationCubit(),
+            return BlocProvider.value(
+              value: context.read<LocationCubit>(),
               child: const LocationBottomSheet(),
             );
           },
@@ -41,12 +42,16 @@ class LocationItem extends StatelessWidget {
               fit: .scaleDown,
             ),
             const SizedBox(width: 4),
-            Text(
-              'Cairo',
-              style: AppTextStyles.labelSmall.copyWith(
-                color: AppColors.white,
-                fontWeight: FontWeightHelper.semiBold,
-              ),
+            BlocBuilder<LocationCubit, LocationState>(
+              builder: (context, state) {
+                return Text(
+                  state.selectedCity?.name ?? 'Cairo',
+                  style: AppTextStyles.labelSmall.copyWith(
+                    color: AppColors.white,
+                    fontWeight: FontWeightHelper.semiBold,
+                  ),
+                );
+              },
             ),
             const SizedBox(width: 4),
             Icon(Icons.keyboard_arrow_down_outlined, color: AppColors.white),

@@ -8,6 +8,7 @@ import '../cubit/club_cubit.dart';
 import '../cubit/home_cubit.dart';
 import '../cubit/home_state.dart';
 import '../../../../core/widgets/custom_bottom_nav_bar.dart';
+import '../cubit/location_cubit.dart';
 import '../widgets/home_header.dart';
 import '../../../../core/widgets/search_item.dart';
 import '../../../book/presentation/pages/book_page.dart';
@@ -23,6 +24,7 @@ class HomeTap extends StatelessWidget {
         BlocProvider(create: (_) => HomeCubit()),
         BlocProvider(create: (_) => ClubCubit()),
         BlocProvider(create: (_) => BookCubit()),
+        BlocProvider(create: (_) => LocationCubit()),
       ],
       child: Scaffold(
         resizeToAvoidBottomInset: false,

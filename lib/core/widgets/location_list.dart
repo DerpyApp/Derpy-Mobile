@@ -29,7 +29,7 @@ class LocationList extends StatelessWidget {
             style: AppTextStyles.bodySmall.copyWith(color: AppColors.white),
           ),
           onTap: () {
-            context.read<LocationCubit>().selectCity(city);
+            onCitySelected(city);
           },
         );
       },
