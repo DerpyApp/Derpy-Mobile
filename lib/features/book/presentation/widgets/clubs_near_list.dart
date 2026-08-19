@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_text_styles.dart';
+import '../../../home/data/model/club_model.dart';
 import 'clubs_near_item.dart';
 
 class ClubsNearList extends StatelessWidget {
@@ -11,6 +12,7 @@ class ClubsNearList extends StatelessWidget {
   final double? padding;
   final bool title;
   final bool sizedBox;
+  final List<ClubModel> clubs;
 
   const ClubsNearList({
     super.key,
@@ -19,12 +21,12 @@ class ClubsNearList extends StatelessWidget {
     this.padding,
     this.title = true,
     this.sizedBox = true,
+    required this.clubs,
   });
 
   @override
   Widget build(BuildContext context) {
     final bool isVertical = scrollDirection == Axis.vertical;
-
     return Padding(
       padding: EdgeInsets.only(left: padding ?? 16),
       child: Column(
@@ -41,30 +43,86 @@ class ClubsNearList extends StatelessWidget {
           if (title) const SizedBox(height: 8),
           if (isVertical)
             Expanded(
-              child: ListView.separated(
-                scrollDirection: Axis.vertical,
-                itemBuilder: (_, index) {
-                  return const ClubsNearItem();
-                },
-                separatorBuilder: (_, _) {
-                  return const SizedBox(height: 10);
-                },
-                itemCount: 10,
-              ),
+              child: clubs.isEmpty
+                  ? Center(
+                      child: Column(
+                        mainAxisAlignment: .center,
+                        children: [
+                          Icon(
+                            Icons.search_off,
+                            size: 40,
+                            color: AppColors.greenHover,
+                          ),
+                          const SizedBox(height: 10),
+                          Text(
+                            'No clubs found',
+                            style: AppTextStyles.bodyMedium.copyWith(
+                              color: AppColors.white,
+                            ),
+                          ),
+                          const SizedBox(height: 4),
+                          Text(
+                            'Try searching with another name or sport.',
+                            textAlign: TextAlign.center,
+                            style: AppTextStyles.bodySmall.copyWith(
+                              color: AppColors.lightGray,
+                            ),
+                          ),
+                        ],
+                      ),
+                    )
+                  : ListView.separated(
+                      scrollDirection: Axis.vertical,
+                      itemBuilder: (_, index) {
+                        return ClubsNearItem(club: clubs[index]);
+                      },
+                      separatorBuilder: (_, _) {
+                        return const SizedBox(height: 10);
+                      },
+                      itemCount: clubs.length,
+                    ),
             )
           else
             SizedBox(
               height: height ?? 185,
-              child: ListView.separated(
-                scrollDirection: Axis.horizontal,
-                itemBuilder: (_, index) {
-                  return const ClubsNearItem();
-                },
-                separatorBuilder: (_, _) {
-                  return SizedBox(width: sizedBox ? 10 : 0);
-                },
-                itemCount: 10,
-              ),
+              child: clubs.isEmpty
+                  ? Center(
+                      child: Column(
+                        mainAxisAlignment: .center,
+                        children: [
+                          Icon(
+                            Icons.search_off,
+                            size: 40,
+                            color: AppColors.greenHover,
+                          ),
+                          const SizedBox(height: 10),
+                          Text(
+                            'No clubs found',
+                            style: AppTextStyles.bodyMedium.copyWith(
+                              color: AppColors.white,
+                            ),
+                          ),
+                          const SizedBox(height: 4),
+                          Text(
+                            'Try searching with another name or sport.',
+                            textAlign: TextAlign.center,
+                            style: AppTextStyles.bodySmall.copyWith(
+                              color: AppColors.lightGray,
+                            ),
+                          ),
+                        ],
+                      ),
+                    )
+                  : ListView.separated(
+                      scrollDirection: Axis.horizontal,
+                      itemBuilder: (_, index) {
+                        return ClubsNearItem(club: clubs[index]);
+                      },
+                      separatorBuilder: (_, _) {
+                        return SizedBox(width: sizedBox ? 10 : 0);
+                      },
+                      itemCount: clubs.length,
+                    ),
             ),
         ],
       ),

@@ -1,7 +1,7 @@
 import 'package:derpy/features/home/presentation/widgets/day_item.dart';
 import 'package:flutter/material.dart';
 
-import '../../data/day_model.dart';
+import '../../data/model/day_model.dart';
 
 class FilterList extends StatefulWidget {
   const FilterList({super.key});

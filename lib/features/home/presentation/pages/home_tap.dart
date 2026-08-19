@@ -3,6 +3,8 @@ import 'package:derpy/features/tournaments/presentation/pages/tournaments_page.d
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../core/theme/app_colors.dart';
+import '../../../book/presentation/cubit/book_cubit.dart';
+import '../cubit/club_cubit.dart';
 import '../cubit/home_cubit.dart';
 import '../cubit/home_state.dart';
 import '../../../../core/widgets/custom_bottom_nav_bar.dart';
@@ -16,8 +18,12 @@ class HomeTap extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (_) => HomeCubit(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (_) => HomeCubit()),
+        BlocProvider(create: (_) => ClubCubit()),
+        BlocProvider(create: (_) => BookCubit()),
+      ],
       child: Scaffold(
         resizeToAvoidBottomInset: false,
         backgroundColor: AppColors.primary,
@@ -34,10 +40,9 @@ class HomeTap extends StatelessWidget {
                 mainAxisAlignment: .center,
                 children: [
                   const SizedBox(height: 16),
-                  if (state.currentIndex != 3)
-                  HomeHeader(),
+                  if (state.currentIndex != 3) HomeHeader(),
                   if (state.currentIndex != 3 && state.currentIndex != 2)
-                  SearchItem(),
+                    SearchItem(),
                   Expanded(
                     child: AnimatedSwitcher(
                       duration: const Duration(milliseconds: 300),

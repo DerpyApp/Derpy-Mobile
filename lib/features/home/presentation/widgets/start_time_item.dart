@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_text_styles.dart';
-import '../../data/start_time_model.dart';
+import '../../data/model/start_time_model.dart';
 
 class StartTimeItem extends StatelessWidget {
   final StartTimeModel time;

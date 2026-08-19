@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import '../../features/home/data/city_model.dart';
+import '../../features/home/data/model/city_model.dart';
 import '../../features/home/presentation/cubit/location_cubit.dart';
 import '../../features/home/presentation/cubit/location_state.dart';
 import '../theme/app_text_styles.dart';

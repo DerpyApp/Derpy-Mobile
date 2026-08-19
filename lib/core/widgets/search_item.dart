@@ -1,8 +1,10 @@
 import 'package:derpy/core/theme/app_colors.dart';
 import 'package:derpy/core/widgets/default_text_form_field.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 
+import '../../features/home/presentation/cubit/club_cubit.dart';
 import '../../features/home/presentation/widgets/filter_item.dart';
 
 class SearchItem extends StatelessWidget {
@@ -19,6 +21,9 @@ class SearchItem extends StatelessWidget {
             child: DefaultTextFormField(
               hintText: 'Search clubs, courts or locations',
               prefixIconImageName: 'search',
+              onChange: (value) {
+                context.read<ClubCubit>().searchClubs(value);
+              }
             ),
           ),
           const SizedBox(width: 8),

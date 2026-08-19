@@ -1,4 +1,4 @@
-import '../../data/city_model.dart';
+import '../../data/model/city_model.dart';
 
 class LocationState {
   final CityModel? selectedCity;

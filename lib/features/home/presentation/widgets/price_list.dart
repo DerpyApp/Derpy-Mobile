@@ -1,7 +1,7 @@
 import 'package:derpy/features/home/presentation/widgets/price_item.dart';
 import 'package:flutter/material.dart';
 
-import '../../data/price_model.dart';
+import '../../data/model/price_model.dart';
 
 class PriceList extends StatefulWidget {
   const PriceList({super.key});

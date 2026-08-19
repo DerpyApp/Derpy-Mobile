@@ -5,9 +5,11 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_text_styles.dart';
+import '../../../home/data/model/club_model.dart';
 
 class ClubsNearItem extends StatelessWidget {
-  const ClubsNearItem({super.key});
+  final ClubModel club;
+  const ClubsNearItem({super.key, required this.club});
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +26,7 @@ class ClubsNearItem extends StatelessWidget {
             child: ClipRRect(
               borderRadius: BorderRadius.circular(25.r),
               child: Image.asset(
-                'assets/images/book_now.png',
+                club.imagePath,
                 fit: BoxFit.cover,
               ),
             ),
@@ -47,7 +49,7 @@ class ClubsNearItem extends StatelessWidget {
                   ),
                   SizedBox(width: 5.w),
                   Text(
-                    'FootBall',
+                    club.sport,
                     style: AppTextStyles.bodySmall.copyWith(
                       color: AppColors.primaryGreen,
                       fontWeight: FontWeightHelper.bold,
@@ -57,7 +59,6 @@ class ClubsNearItem extends StatelessWidget {
               ),
             ),
           ),
-          // Rating
           Positioned(
             top: 10.h,
             right: 10.w,
@@ -77,11 +78,11 @@ class ClubsNearItem extends StatelessWidget {
                   ),
                   SizedBox(width: 6.w),
                   Text(
-                    '4.5',
+                    club.rating.toString(),
                     style: AppTextStyles.bodySmall.copyWith(
                       color: AppColors.primaryGreen,
                       fontWeight: FontWeightHelper.bold,
-                    )
+                    ),
                   ),
                 ],
               ),
@@ -94,18 +95,18 @@ class ClubsNearItem extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Markez Shbap Abdeen',
+                  club.name,
                   style: AppTextStyles.titleSmall.copyWith(
                     color: AppColors.white,
                     fontWeight: FontWeightHelper.semiBold,
-                  )
+                  ),
                 ),
                 Text(
-                  'Abdeen',
+                  club.location,
                   style: AppTextStyles.bodySmall.copyWith(
                     color: AppColors.greenHover,
                     fontWeight: FontWeightHelper.semiBold,
-                  )
+                  ),
                 ),
               ],
             ),
@@ -129,21 +130,22 @@ class ClubsNearItem extends StatelessWidget {
                     text: TextSpan(
                       children: [
                         TextSpan(
-                          text: '500',
+                          text: club.price.toString(),
                           style: AppTextStyles.titleLarge.copyWith(
                             color: AppColors.primaryGreen,
                             fontWeight: FontWeightHelper.bold,
                           ),
                         ),
+                        const TextSpan(text: ' '),
                         TextSpan(
-                          text: ' EGP /',
+                          text: club.priceUnit,
                           style: AppTextStyles.titleLarge.copyWith(
                             color: AppColors.white,
                             fontWeight: FontWeightHelper.bold,
                           ),
                         ),
                         TextSpan(
-                          text: ' hour',
+                          text: club.time,
                           style: AppTextStyles.bodySmall.copyWith(
                             color: AppColors.white,
                             fontWeight: FontWeightHelper.bold,

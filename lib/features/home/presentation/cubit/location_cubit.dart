@@ -1,6 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../data/city_model.dart';
+import '../../data/model/city_model.dart';
 import 'location_state.dart';
 
 class LocationCubit extends Cubit<LocationState> {

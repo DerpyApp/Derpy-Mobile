@@ -2,7 +2,7 @@ import 'package:derpy/features/home/presentation/widgets/start_time_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../core/theme/app_colors.dart';
-import '../../data/start_time_model.dart';
+import '../../data/model/start_time_model.dart';
 
 class StartTimeList extends StatefulWidget {
   const StartTimeList({super.key});
