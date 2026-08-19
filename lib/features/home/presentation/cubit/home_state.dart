@@ -9,4 +9,5 @@ class HomeState {
       previousIndex: previousIndex ?? this.previousIndex,
     );
   }
+
 }
