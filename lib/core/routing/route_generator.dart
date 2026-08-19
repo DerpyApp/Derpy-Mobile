@@ -56,7 +56,7 @@ class RouteGenerator {
       case Routes.resetPassword:
         return _route(const ResetPassword());
       case Routes.privacyPolicy:
-        return _route(const PrivacyPolicy());
+        return _route(const PrivacyPolicy(), slideFromRight: true);
       case Routes.home:
         return _route(const HomeTap());
       case Routes.notification:

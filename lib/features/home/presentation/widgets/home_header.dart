@@ -3,7 +3,6 @@ import 'package:derpy/core/theme/app_colors.dart';
 import 'package:derpy/core/theme/font_weight_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-
 import '../../../../core/routing/routes.dart';
 import '../../../../core/theme/app_text_styles.dart';
 import '../../../../core/widgets/location_item.dart';
