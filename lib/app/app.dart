@@ -1,8 +1,5 @@
-import 'package:derpy/core/cache/cache_helper.dart';
 import 'package:derpy/core/routing/routes.dart';
 import 'package:flutter/material.dart';
-
-import '../core/cache/cache_keys.dart';
 import '../core/routing/route_generator.dart';
 import '../core/services/navigation_service.dart';
 import '../core/theme/app_theme.dart';
