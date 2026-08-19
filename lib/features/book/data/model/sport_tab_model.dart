@@ -5,6 +5,6 @@ class SportTabModel {
 
   static final List<SportTabModel> sports = [
     SportTabModel(title: 'Football'),
-    SportTabModel(title: 'Padel'),
+    SportTabModel(title: 'Paddle'),
   ];
 }

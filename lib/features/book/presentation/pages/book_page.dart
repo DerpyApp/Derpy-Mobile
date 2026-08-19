@@ -45,6 +45,13 @@ class BookPage extends StatelessWidget {
                   ],
                   onTap: (index) {
                     context.read<BookCubit>().changeTab(index);
+                    if (index == 0) {
+                      context.read<ClubCubit>().searchClubs('');
+                    } else {
+                      context.read<ClubCubit>().filterBySport(
+                        SportTabModel.sports[index - 1].title,
+                      );
+                    }
                   },
                 ),
               ),

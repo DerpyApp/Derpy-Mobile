@@ -14,4 +14,15 @@ class ClubCubit extends Cubit<ClubState> {
     }).toList();
     emit(state.copyWith(clubs: filteredClubs));
   }
+
+  void filterBySport(String sport) {
+    if (sport == 'All') {
+      emit(state.copyWith(clubs: ClubModel.clubs));
+      return;
+    }
+    final filteredClubs = ClubModel.clubs
+        .where((club) => club.sport.toLowerCase() == sport.toLowerCase())
+        .toList();
+    emit(state.copyWith(clubs: filteredClubs));
+  }
 }
