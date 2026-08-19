@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-
 import '../../features/home/data/model/city_model.dart';
-import '../../features/home/presentation/cubit/location_cubit.dart';
 import '../theme/app_colors.dart';
 import '../theme/app_text_styles.dart';
 
