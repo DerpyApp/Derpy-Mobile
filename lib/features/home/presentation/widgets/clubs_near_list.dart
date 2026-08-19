@@ -7,29 +7,41 @@ import 'clubs_near_item.dart';
 
 class ClubsNearList extends StatelessWidget {
   Axis scrollDirection;
-  ClubsNearList({super.key, this.scrollDirection = Axis.horizontal});
+  double? height;
+  double? padding;
+  bool title;
+  bool sizedBox;
+  ClubsNearList({
+    super.key,
+    this.scrollDirection = Axis.horizontal,
+    this.height,
+    this.padding,
+    this.title = true,
+    this.sizedBox = true,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(left: 16),
+      padding: EdgeInsets.only(left: padding ?? 16),
       child: Column(
         crossAxisAlignment: .start,
         children: [
-          Text(
-            'Clubs Near You',
-            style: AppTextStyles.titleSmall.copyWith(
-              color: AppColors.white,
-              fontWeight: FontWeightHelper.semiBold,
+          if (title)
+            Text(
+              'Clubs Near You',
+              style: AppTextStyles.titleSmall.copyWith(
+                color: AppColors.white,
+                fontWeight: FontWeightHelper.semiBold,
+              ),
             ),
-          ),
-          const SizedBox(height: 8),
+          if (title) const SizedBox(height: 8),
           SizedBox(
-            height: 185,
+            height: height ?? 185,
             child: ListView.separated(
               scrollDirection: scrollDirection,
               itemBuilder: (_, index) => const ClubsNearItem(),
-              separatorBuilder: (_, _) => SizedBox(width: 10),
+              separatorBuilder: (_, _) => SizedBox(width: sizedBox ? 10 : 0, height: sizedBox ? 0 : 10),
               itemCount: 10,
             ),
           ),

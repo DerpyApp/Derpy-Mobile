@@ -1,4 +1,3 @@
-import 'package:derpy/core/theme/app_text_styles.dart';
 import 'package:derpy/features/home/presentation/pages/profile_page.dart';
 import 'package:derpy/features/home/presentation/pages/tournaments_page.dart';
 import 'package:flutter/material.dart';
