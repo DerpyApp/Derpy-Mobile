@@ -6,12 +6,12 @@ import '../../../../core/theme/app_text_styles.dart';
 import 'clubs_near_item.dart';
 
 class ClubsNearList extends StatelessWidget {
-  Axis scrollDirection;
-  double? height;
-  double? padding;
-  bool title;
-  bool sizedBox;
-  ClubsNearList({
+  final Axis scrollDirection;
+  final double? height;
+  final double? padding;
+  final bool title;
+  final bool sizedBox;
+  const ClubsNearList({
     super.key,
     this.scrollDirection = Axis.horizontal,
     this.height,
