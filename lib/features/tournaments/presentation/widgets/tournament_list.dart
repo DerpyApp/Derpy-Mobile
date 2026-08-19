@@ -1,5 +1,5 @@
 import 'package:derpy/core/theme/font_weight_helper.dart';
-import 'package:derpy/features/home/presentation/widgets/tournament_item.dart';
+import 'package:derpy/features/tournaments/presentation/widgets/tournament_item.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../core/theme/app_colors.dart';

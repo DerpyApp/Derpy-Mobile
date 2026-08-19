@@ -1,14 +1,14 @@
-import 'package:derpy/features/home/presentation/pages/profile_page.dart';
-import 'package:derpy/features/home/presentation/pages/tournaments_page.dart';
+import 'package:derpy/features/profile/presentation/pages/profile_page.dart';
+import 'package:derpy/features/tournaments/presentation/pages/tournaments_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../cubit/home_cubit.dart';
 import '../cubit/home_state.dart';
-import '../widgets/custom_bottom_nav_bar.dart';
+import '../../../../core/widgets/custom_bottom_nav_bar.dart';
 import '../widgets/home_header.dart';
-import '../widgets/search_item.dart';
-import 'book_page.dart';
+import '../../../../core/widgets/search_item.dart';
+import '../../../book/presentation/pages/book_page.dart';
 import 'home_page.dart';
 
 class HomeTap extends StatelessWidget {

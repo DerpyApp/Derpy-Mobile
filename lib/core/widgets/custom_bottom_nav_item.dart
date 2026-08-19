@@ -2,7 +2,7 @@ import 'package:derpy/core/theme/font_weight_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-import '../../../../core/theme/app_colors.dart';
+import '../theme/app_colors.dart';
 
 class CustomBottomNavItem extends StatelessWidget {
   const CustomBottomNavItem({

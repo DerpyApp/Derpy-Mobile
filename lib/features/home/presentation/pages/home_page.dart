@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
+import '../../../tournaments/presentation/widgets/tournament_list.dart';
 import '../widgets/book_now_item.dart';
-import '../widgets/clubs_near_list.dart';
-import '../widgets/tournament_list.dart';
+import '../../../book/presentation/widgets/clubs_near_list.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});

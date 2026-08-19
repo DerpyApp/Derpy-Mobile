@@ -1,7 +1,7 @@
 import 'package:derpy/core/theme/font_weight_helper.dart';
 import 'package:flutter/material.dart';
-import '../../../../core/theme/app_colors.dart';
 
+import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_text_styles.dart';
 import 'clubs_near_item.dart';
 
@@ -11,6 +11,7 @@ class ClubsNearList extends StatelessWidget {
   final double? padding;
   final bool title;
   final bool sizedBox;
+
   const ClubsNearList({
     super.key,
     this.scrollDirection = Axis.horizontal,
@@ -22,10 +23,12 @@ class ClubsNearList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final bool isVertical = scrollDirection == Axis.vertical;
+
     return Padding(
       padding: EdgeInsets.only(left: padding ?? 16),
       child: Column(
-        crossAxisAlignment: .start,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           if (title)
             Text(
@@ -36,15 +39,33 @@ class ClubsNearList extends StatelessWidget {
               ),
             ),
           if (title) const SizedBox(height: 8),
-          SizedBox(
-            height: height ?? 185,
-            child: ListView.separated(
-              scrollDirection: scrollDirection,
-              itemBuilder: (_, index) => const ClubsNearItem(),
-              separatorBuilder: (_, _) => SizedBox(width: sizedBox ? 10 : 0, height: sizedBox ? 0 : 10),
-              itemCount: 10,
+          if (isVertical)
+            Expanded(
+              child: ListView.separated(
+                scrollDirection: Axis.vertical,
+                itemBuilder: (_, index) {
+                  return const ClubsNearItem();
+                },
+                separatorBuilder: (_, _) {
+                  return const SizedBox(height: 10);
+                },
+                itemCount: 10,
+              ),
+            )
+          else
+            SizedBox(
+              height: height ?? 185,
+              child: ListView.separated(
+                scrollDirection: Axis.horizontal,
+                itemBuilder: (_, index) {
+                  return const ClubsNearItem();
+                },
+                separatorBuilder: (_, _) {
+                  return SizedBox(width: sizedBox ? 10 : 0);
+                },
+                itemCount: 10,
+              ),
             ),
-          ),
         ],
       ),
     );

@@ -8,5 +8,7 @@ class Routes {
   static const otpVerification = '/otp-verification';
   static const resetPassword = '/reset-password';
   static const privacyPolicy = '/privacy-policy';
-  static const home = '/home';
+  static const home = '/presentation';
+  static const profile = '/profile';
+  static const notification = '/notification';
 }

@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-
-import '../widgets/book_now_item.dart';
 import '../widgets/tournament_list.dart';
 
 class TournamentsPage extends StatelessWidget {

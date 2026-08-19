@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../widgets/badge_item.dart';
+import '../../../home/presentation/widgets/badge_item.dart';
 import '../widgets/profile_item.dart';
 
 class ProfilePage extends StatelessWidget {

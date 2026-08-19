@@ -1,10 +1,12 @@
+import 'package:derpy/core/services/navigation_service.dart';
 import 'package:derpy/core/theme/app_colors.dart';
 import 'package:derpy/core/theme/font_weight_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
+import '../../../../core/routing/routes.dart';
 import '../../../../core/theme/app_text_styles.dart';
-import 'location_item.dart';
+import '../../../../core/widgets/location_item.dart';
 
 class HomeHeader extends StatelessWidget {
   const HomeHeader({super.key});
@@ -72,17 +74,24 @@ class HomeHeader extends StatelessWidget {
                 ],
               ),
               Spacer(),
-              Container(
-                padding: EdgeInsets.all(8),
-                decoration: BoxDecoration(
-                  color: AppColors.primaryGreen.withValues(alpha: .28),
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                child: SvgPicture.asset(
-                  'assets/icons/notification.svg',
-                  width: 24,
-                  height: 24,
-                  fit: .scaleDown,
+              GestureDetector(
+                onTap: () {
+                  NavigationService.pushNamed(Routes.notification);
+                },
+                child: AnimatedContainer(
+                  duration: const Duration(milliseconds: 300),
+                  curve: Curves.easeIn,
+                  padding: EdgeInsets.all(8),
+                  decoration: BoxDecoration(
+                    color: AppColors.primaryGreen.withValues(alpha: .28),
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: SvgPicture.asset(
+                    'assets/icons/notification.svg',
+                    width: 24,
+                    height: 24,
+                    fit: .scaleDown,
+                  ),
                 ),
               ),
             ],

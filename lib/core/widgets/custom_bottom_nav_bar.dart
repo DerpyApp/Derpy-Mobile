@@ -1,10 +1,10 @@
-import 'package:derpy/features/home/presentation/widgets/custom_bottom_nav_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../core/theme/app_colors.dart';
-import '../cubit/home_cubit.dart';
-import '../cubit/home_state.dart';
+import '../theme/app_colors.dart';
+import '../../features/home/presentation/cubit/home_cubit.dart';
+import '../../features/home/presentation/cubit/home_state.dart';
+import 'custom_bottom_nav_item.dart';
 
 class CustomBottomNavBar extends StatelessWidget {
   const CustomBottomNavBar({super.key});

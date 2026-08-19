@@ -1,8 +1,8 @@
-import 'package:derpy/features/home/data/models/sport_tab_model.dart';
-import 'package:derpy/features/home/presentation/widgets/sport_tab_item.dart';
 import 'package:flutter/material.dart';
 
+import '../../data/model/sport_tab_model.dart';
 import '../widgets/clubs_near_list.dart';
+import '../widgets/sport_tab_item.dart';
 
 class BookPage extends StatefulWidget {
   const BookPage({super.key});
@@ -50,10 +50,9 @@ class _BookPageState extends State<BookPage> {
             ),
           ),
           const SizedBox(height: 16),
-          SingleChildScrollView(
+          Expanded(
             child: ClubsNearList(
               scrollDirection: Axis.vertical,
-              height: MediaQuery.sizeOf(context).height * 0.57,
               padding: 0,
               title: false,
               sizedBox: false,
