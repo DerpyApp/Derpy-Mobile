@@ -8,14 +8,19 @@ class TournamentsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(children: [
-      TournamentList(
-        scrollDirection: Axis.vertical,
-        height: MediaQuery.sizeOf(context).height * 0.63,
-        padding: 0,
-        title: false,
-        sizedBox: false,
-      ),
-    ]);
+    return Column(
+      children: [
+        const SizedBox(height: 16),
+        Expanded(
+          child: TournamentList(
+            scrollDirection: Axis.vertical,
+            padding: 0,
+            title: false,
+            sizedBox: false,
+            right: 16,
+          ),
+        ),
+      ],
+    );
   }
 }

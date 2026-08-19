@@ -34,6 +34,9 @@ flutter:
     - family: Sora
       fonts:
         - asset: assets/fonts/Sora-VariableFont_wght.ttf
+    - family: Oswald
+      fonts:
+        - asset: assets/fonts/Oswald-VariableFont_wght.ttf
 
   uses-material-design: true
 

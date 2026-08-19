@@ -99,7 +99,7 @@ class TournamentItem extends StatelessWidget {
             ),
           ),
           Positioned(
-            bottom: 145.h,
+            bottom: 125.h,
             left: 13.w,
             child: Text(
               'Zamalek Club',
@@ -110,7 +110,7 @@ class TournamentItem extends StatelessWidget {
             ),
           ),
           Positioned(
-            bottom: 120.h,
+            bottom: 100.h,
             left: 13.w,
             child: Row(
               children: [
@@ -131,7 +131,7 @@ class TournamentItem extends StatelessWidget {
             ),
           ),
           Positioned(
-            bottom: 90.h,
+            bottom: 75.h,
             left: 13.w,
             child: Row(
               children: [
@@ -152,7 +152,7 @@ class TournamentItem extends StatelessWidget {
             ),
           ),
           Positioned(
-            bottom: 60.h,
+            bottom: 50.h,
             left: 13.w,
             child: Row(
               children: [

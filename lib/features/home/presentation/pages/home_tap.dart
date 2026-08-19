@@ -34,7 +34,9 @@ class HomeTap extends StatelessWidget {
                 mainAxisAlignment: .center,
                 children: [
                   const SizedBox(height: 16),
+                  if (state.currentIndex != 3)
                   HomeHeader(),
+                  if (state.currentIndex != 3 && state.currentIndex != 2)
                   SearchItem(),
                   Expanded(
                     child: AnimatedSwitcher(
