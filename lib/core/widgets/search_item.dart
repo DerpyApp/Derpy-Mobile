@@ -23,7 +23,7 @@ class SearchItem extends StatelessWidget {
               prefixIconImageName: 'search',
               onChange: (value) {
                 context.read<ClubCubit>().searchClubs(value);
-              }
+              },
             ),
           ),
           const SizedBox(width: 8),
@@ -33,7 +33,12 @@ class SearchItem extends StatelessWidget {
                 showModalBottomSheet(
                   backgroundColor: Colors.transparent,
                   context: context,
-                  builder: (context) => FilterItem(),
+                  builder: (_) {
+                    return BlocProvider.value(
+                      value: context.read<ClubCubit>(),
+                      child: const FilterItem(),
+                    );
+                  },
                 );
               },
               child: Container(

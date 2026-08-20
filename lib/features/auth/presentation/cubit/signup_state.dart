@@ -18,6 +18,7 @@ class SignupState {
   final int? skillLevel;
   final String? city;
   final Set<String> favoriteSports;
+  final bool phoneError;
 
 
   const SignupState({
@@ -36,6 +37,7 @@ class SignupState {
     this.skillLevel,
     this.city,
     this.favoriteSports = const {'Football'},
+    this.phoneError = false,
   });
 
   SignupState copyWith({
@@ -54,6 +56,7 @@ class SignupState {
     final int? skillLevel,
     final String? city,
     final Set<String>? favoriteSports,
+    final bool? phoneError,
   }) {
     return SignupState(
       currentStep: currentStep ?? this.currentStep,
@@ -71,6 +74,7 @@ class SignupState {
       skillLevel: skillLevel ?? this.skillLevel,
       city: city ?? this.city,
       favoriteSports: favoriteSports ?? this.favoriteSports,
+      phoneError: phoneError ?? this.phoneError,
     );
   }
 }

@@ -13,7 +13,6 @@ void main() async {
       minTextAdapt: true,
       splitScreenMode: true,
       child: const App(),
-
     ),
   );
 }

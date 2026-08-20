@@ -25,4 +25,16 @@ class ClubCubit extends Cubit<ClubState> {
         .toList();
     emit(state.copyWith(clubs: filteredClubs));
   }
+
+  void changePrice(int index) {
+    emit(state.copyWith(currentPriceIndex: index));
+  }
+
+  void changeStartTime(int index) {
+    emit(state.copyWith(currentStartTimeIndex: index));
+  }
+
+  void changeDay(int index) {
+    emit(state.copyWith(currentDayIndex: index));
+  }
 }

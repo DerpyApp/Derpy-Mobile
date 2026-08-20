@@ -52,10 +52,6 @@ class SignupCubit extends Cubit<SignupState> {
     emit(state.copyWith(dateOfBirth: dateOfBirth));
   }
 
-  void setPhoneNumber(String phoneNumber) {
-    emit(state.copyWith(phoneNumber: phoneNumber));
-  }
-
   void setPhoneIsoCode(String phoneIsoCode) {
     emit(state.copyWith(phoneIsoCode: phoneIsoCode));
   }
@@ -92,5 +88,15 @@ class SignupCubit extends Cubit<SignupState> {
       updatedSports.add(sport);
     }
     emit(state.copyWith(favoriteSports: updatedSports));
+  }
+
+  bool validatePhone() {
+    final isValid = state.phoneNumber.isNotEmpty;
+    emit(state.copyWith(phoneError: !isValid));
+    return isValid;
+  }
+
+  void setPhoneNumber(String phone) {
+    emit(state.copyWith(phoneNumber: phone, phoneError: phone.isEmpty));
   }
 }
