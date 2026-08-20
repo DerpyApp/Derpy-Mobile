@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../book/presentation/cubit/book_cubit.dart';
+import '../../../tournaments/presentation/cubit/tournament_cubit.dart';
 import '../cubit/club_cubit.dart';
 import '../cubit/home_cubit.dart';
 import '../cubit/home_state.dart';
@@ -25,6 +26,7 @@ class HomeTap extends StatelessWidget {
         BlocProvider(create: (_) => ClubCubit()),
         BlocProvider(create: (_) => BookCubit()),
         BlocProvider(create: (_) => LocationCubit()),
+        BlocProvider(create: (_) => TournamentCubit()),
       ],
       child: Scaffold(
         resizeToAvoidBottomInset: false,

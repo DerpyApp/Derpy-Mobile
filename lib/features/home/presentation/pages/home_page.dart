@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../../tournaments/data/model/tournament_model.dart';
+import '../../../tournaments/presentation/cubit/tournament_cubit.dart';
+import '../../../tournaments/presentation/cubit/tournament_state.dart';
 import '../../../tournaments/presentation/widgets/tournament_list.dart';
 import '../cubit/club_cubit.dart';
 import '../cubit/club_state.dart';
@@ -20,7 +23,11 @@ class HomePage extends StatelessWidget {
               const SizedBox(height: 16),
               ClubsNearList(clubs: state.clubs),
               const SizedBox(height: 16),
-              const TournamentList(),
+              BlocBuilder<TournamentCubit, TournamentState>(
+                builder: (context, state) {
+                  return TournamentList(tournaments: state.tournaments);
+                },
+              ),
             ],
           );
         },

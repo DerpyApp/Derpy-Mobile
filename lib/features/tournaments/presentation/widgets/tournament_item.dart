@@ -5,9 +5,11 @@ import 'package:flutter_svg/svg.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_text_styles.dart';
 import '../../../../core/theme/font_weight_helper.dart';
+import '../../data/model/tournament_model.dart';
 
 class TournamentItem extends StatelessWidget {
-  const TournamentItem({super.key});
+  final TournamentModel tournament;
+  const TournamentItem({super.key, required this.tournament});
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +36,7 @@ class TournamentItem extends StatelessWidget {
               child: SizedBox(
                 height: 150.h,
                 child: Image.asset(
-                  'assets/images/football.png',
+                  tournament.imagePath,
                   fit: BoxFit.cover,
                 ),
               ),
@@ -59,7 +61,7 @@ class TournamentItem extends StatelessWidget {
                   ),
                   SizedBox(width: 5.w),
                   Text(
-                    'FootBall',
+                    tournament.sport,
                     style: AppTextStyles.bodySmall.copyWith(
                       color: AppColors.primaryGreen,
                       fontWeight: FontWeightHelper.bold,
@@ -88,7 +90,7 @@ class TournamentItem extends StatelessWidget {
                   ),
                   SizedBox(width: 5.w),
                   Text(
-                    '4.5',
+                    tournament.rating.toString(),
                     style: AppTextStyles.bodySmall.copyWith(
                       color: AppColors.primaryGreen,
                       fontWeight: FontWeightHelper.bold,
@@ -102,7 +104,7 @@ class TournamentItem extends StatelessWidget {
             bottom: 125.h,
             left: 13.w,
             child: Text(
-              'Zamalek Club',
+              tournament.name,
               style: AppTextStyles.titleLarge.copyWith(
                 color: AppColors.white,
                 fontWeight: FontWeightHelper.semiBold,
@@ -121,7 +123,7 @@ class TournamentItem extends StatelessWidget {
                 ),
                 SizedBox(width: 8.w),
                 Text(
-                  'Oct 15 - Oct 20, 2026',
+                  '${tournament.startDate} - ${tournament.endDate}',
                   style: AppTextStyles.bodySmall.copyWith(
                     color: AppColors.lightGray,
                     fontWeight: FontWeightHelper.medium,
@@ -142,7 +144,7 @@ class TournamentItem extends StatelessWidget {
                 ),
                 SizedBox(width: 8.w),
                 Text(
-                  'Zamalek, Cairo',
+                  tournament.location,
                   style: AppTextStyles.bodySmall.copyWith(
                     color: AppColors.lightGray,
                     fontWeight: FontWeightHelper.medium,
@@ -163,7 +165,7 @@ class TournamentItem extends StatelessWidget {
                 ),
                 SizedBox(width: 8.w),
                 Text(
-                  '24/32 Teams Registered',
+                  '${tournament.registeredTeams}/${tournament.totalTeams} Registered',
                   style: AppTextStyles.bodySmall.copyWith(
                     color: AppColors.lightGray,
                     fontWeight: FontWeightHelper.medium,
@@ -186,7 +188,7 @@ class TournamentItem extends StatelessWidget {
                     ),
                   ),
                   TextSpan(
-                    text: '100,000 EGP',
+                    text: tournament.prize.toString(),
                     style: AppTextStyles.titleLarge.copyWith(
                       color: AppColors.primaryGreen,
                       fontWeight: FontWeightHelper.bold,
