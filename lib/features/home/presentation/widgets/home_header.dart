@@ -12,6 +12,8 @@ class HomeHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final hour = DateTime.now().hour;
+    final greeting = hour < 12 ? 'Morning' : 'Evening';
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: Column(
@@ -55,7 +57,7 @@ class HomeHeader extends StatelessWidget {
                           style: TextStyle(fontWeight: FontWeightHelper.bold),
                         ),
                         TextSpan(
-                          text: 'Morning ,',
+                          text: '$greeting,',
                           style: TextStyle(
                             fontWeight: FontWeightHelper.bold,
                             color: AppColors.primaryGreen,
